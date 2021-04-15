@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.inputfields {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputfields input {
+    width: 15vw;
+    margin: 0 0 0 0;
+}
+
+.submitButton {
+    margin: 3vh 0 0 0;
+}
