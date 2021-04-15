@@ -1,8 +1,8 @@
-let form = document.getElementById("form");
-let result = document.getElementById("result");
-let hoursInput = document.getElementById("hours");
-let hourlyInput = document.getElementById("hourlyRate");
-let county = document.getElementById("county");
+let $form = document.getElementById("form");
+let $result = document.getElementById("result");
+let $hoursInput = document.getElementById("hours");
+let $hourlyInput = document.getElementById("hourlyRate");
+let $countyInput = document.getElementById("county");
 
 
 form.addEventListener("submit", function(e) {
@@ -14,13 +14,14 @@ form.addEventListener("submit", function(e) {
         const countyRate = parseFloat(data['results']['0']['kommunal-skatt']);
         const countryCouncil = parseFloat(data['results']['0']['landstings-skatt']);
         const funeralFee = parseFloat(data['results']['0']['begravnings-avgift']);
-        const totalHours = parseFloat(hoursInput.value);
-        const hourly = parseFloat(hourlyInput.value);
+        const year = data['results']['0']['år'];
         const taxRate = countyRate + countryCouncil + funeralFee;
         const taxTable = Math.round(taxRate);
+        const totalHours = parseFloat($hoursInput.value);
+        const hourlyRate = parseFloat($hourlyInput.value);
 
-        calculateTaxes(totalHours*hourly, 2021 , taxTable).then(function(data) {
-            result.innerHTML = calculateSalary(data, totalHours*hourly);
+        calculateTaxes(totalHours*hourlyRate, year , taxTable).then(function(data) {
+            result.innerHTML = calculateSalary(data, totalHours*hourlyRate);
         });
     });
 })
